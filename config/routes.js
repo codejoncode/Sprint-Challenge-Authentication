@@ -3,11 +3,17 @@ const bcrypt = require("bcryptjs");
 const { authenticate } = require("./middlewares");
 const generateToken = require("./generateToken");
 const db = require("../database/dbConfig");
+const morgan = require("morgan");
+const helmet = require("helmet");
+const cors = require("cors");
 
 module.exports = server => {
   server.post("/api/register", register);
   server.post("/api/login", login);
   server.get("/api/jokes", authenticate, getJokes);
+  server.use(cors());
+  server.use(helmet());
+  server.use(morgan("short"));
 };
 
 function register(req, res) {
@@ -36,8 +42,8 @@ function register(req, res) {
             res.status(500).json({ error, message: error.message })
           );
       } else {
-        //ids is not a thing  thus registration failed 
-        res.status(500).send("Registration failed")
+        //ids is not a thing  thus registration failed
+        res.status(500).send("Registration failed");
       }
     })
     .catch(error => res.status(500).json({ error, message: error.message }));
