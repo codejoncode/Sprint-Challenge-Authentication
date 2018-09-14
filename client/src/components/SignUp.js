@@ -5,7 +5,7 @@ class SignUp extends React.Component {
   state = {
     username: "",
     password: "",
-    confirm: "", 
+    confirm: "",
     errorHeader: ""
   };
   onChange = event => {
@@ -30,16 +30,16 @@ class SignUp extends React.Component {
   register = body => {
     const promise = axios.post("http://localhost:3300/api/register", body);
     promise
-      .then( id => {
+      .then(id => {
         if (id) {
-          return this.props.history.push("/signin")
+          return this.props.history.push("/signin");
         } else {
-          alert("Unable to register try a different username")
+          alert("Unable to register try a different username");
         }
       })
       .catch(error => {
-        console.error("Error with Registration", error)
-      })
+        console.error("Error with Registration", error);
+      });
   };
 
   render() {

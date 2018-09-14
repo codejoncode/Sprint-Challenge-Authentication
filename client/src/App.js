@@ -4,6 +4,7 @@ import "./App.css";
 import { Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Signin from "./components/Signin";
+import JokeHome from "./components/JokeHome";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         </header>
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={Signin} />
+        <Route exact path="/jokehome" component={JokeHome} />
       </div>
     );
   }
